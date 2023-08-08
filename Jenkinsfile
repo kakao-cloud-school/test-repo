@@ -14,13 +14,13 @@ pipeline {
                 checkout scm
             }
         }
-      stage('Build Docker Image') {
-          steps {
-              script {
-            docker.build("joyoungkyung/jenkinshub", ".")
-                   }
-               }
-           }
+      stage('Build') {
+            steps {
+                script {
+                    def image = docker.build(REPOSITORY, '.')
+                }
+            }
+        }
         stage('Docker Login') {
             steps {
                 script {
